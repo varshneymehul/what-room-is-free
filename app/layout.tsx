@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "What Room is Free? @ BITS",
+  title: "what room is free? @ bits",
   description: "A simple website to check which room is free @ BITS Pilani",
 };
 
