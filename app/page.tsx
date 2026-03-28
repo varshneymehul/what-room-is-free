@@ -223,7 +223,7 @@ export default function Home() {
 
         </div>
         {/* Create a search time filter */ }
-        <form className="max-w mx-auto grid grid-cols-3 gap-4" onSubmit={ (e) => e.preventDefault() }>
+        <form className="w-full mx-auto grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-4" onSubmit={ (e) => e.preventDefault() }>
           <div>
             <label htmlFor="search-day" className="block mb-2.5 text-sm font-medium text-zinc-900 dark:text-zinc-100">Select a day</label>
             <select id="search-day" value={ timeFilterDay } onChange={ (e) => setTimeFilterDay(Number(e.target.value)) } className="block w-full px-3 py-2.5 bg-white dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 shadow-sm">
@@ -252,7 +252,7 @@ export default function Home() {
               <option value="12">7:00 PM</option>
             </select>
           </div>
-          <button type="button" onClick={ () => { setTimeFilterDay(day); setTimeFilterHour(hour); } } className="mt-6 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">Clear</button>
+          <button type="button" onClick={ () => { setTimeFilterDay(day); setTimeFilterHour(hour); } } className="sm:mt-6 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors col-span-2 sm:col-span-1">Clear</button>
         </form>
         {/* Display current time */ }
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full my-8">
