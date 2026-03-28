@@ -27,7 +27,8 @@ export default function Home() {
   const inputRef = useRef<HTMLInputElement>(null);
   const [buildingFilter, setBuildingFilter] = useState<string>("");
   const [searchQuery, setSearchQuery] = useState<string>("");
-
+  const [timeFilterDay, setTimeFilterDay] = useState<number>(0);
+  const [timeFilterHour, setTimeFilterHour] = useState<number>(0);
   const date = new Date();
   const day = date.getDay() - 1;
   const hour = date.getHours() - 7; // starts at 8am
@@ -59,13 +60,14 @@ export default function Home() {
         },
       });
     };
-
     fetchCSV();
+    setTimeFilterDay(day);
+    setTimeFilterHour(hour);
   }, []);
 
   // check if a string is a day
   function isDay(str: string) {
-    return str.length >= 1 && str.match(/[A-Z]+[a-z]+/i);
+    return /^[A-Za-z]+$/.test(str);
   }
 
   // helper: get day index from day string
@@ -84,7 +86,7 @@ export default function Home() {
     for (const hour of hours) {
       for (const day of days) {
         const idx = dayIndex(day);
-        if (idx >= 0) bitArray.set(6 * idx + hour);
+        if (idx >= 0) bitArray.set(13 * idx + hour);
       }
     }
   }
@@ -164,7 +166,7 @@ export default function Home() {
           if (!roomKey || roomKey === "") continue;
 
           if (!newRooms.has(roomKey)) {
-            newRooms.set(roomKey, new BitArray(6 * (12)));
+            newRooms.set(roomKey, new BitArray(6 * (13)));
           }
           const bitArray = newRooms.get(roomKey)!;
 
@@ -181,7 +183,9 @@ export default function Home() {
         }
       }
       setRooms(newRooms);
-      console.log(newRooms);
+      newRooms.forEach((bitArray, room) => {
+        console.log(`Room ${room}: ${bitArray.toBitString()}`);
+      });
     }
   }, [data]);
   return (
@@ -218,6 +222,38 @@ export default function Home() {
           </section>
 
         </div>
+        {/* Create a search time filter */ }
+        <form className="max-w mx-auto grid grid-cols-3 gap-4" onSubmit={ (e) => e.preventDefault() }>
+          <div>
+            <label htmlFor="search-day" className="block mb-2.5 text-sm font-medium text-zinc-900 dark:text-zinc-100">Select a day</label>
+            <select id="search-day" value={ timeFilterDay } onChange={ (e) => setTimeFilterDay(Number(e.target.value)) } className="block w-full px-3 py-2.5 bg-white dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 shadow-sm">
+              <option value="0">Monday</option>
+              <option value="1">Tuesday</option>
+              <option value="2">Wednesday</option>
+              <option value="3">Thursday</option>
+              <option value="4">Friday</option>
+              <option value="5">Saturday</option>
+            </select>
+          </div>
+          <div>
+            <label htmlFor="search-time" className="block mb-2.5 text-sm font-medium text-zinc-900 dark:text-zinc-100">Select a time</label>
+            <select id="search-time" value={ timeFilterHour } onChange={ (e) => setTimeFilterHour(Number(e.target.value)) } className="block w-full px-3 py-2.5 bg-white dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 shadow-sm">
+              <option value="1">8:00 AM</option>
+              <option value="2">9:00 AM</option>
+              <option value="3">10:00 AM</option>
+              <option value="4">11:00 AM</option>
+              <option value="5">12:00 PM</option>
+              <option value="6">1:00 PM</option>
+              <option value="7">2:00 PM</option>
+              <option value="8">3:00 PM</option>
+              <option value="9">4:00 PM</option>
+              <option value="10">5:00 PM</option>
+              <option value="11">6:00 PM</option>
+              <option value="12">7:00 PM</option>
+            </select>
+          </div>
+          <button type="button" onClick={ () => { setTimeFilterDay(day); setTimeFilterHour(hour); } } className="mt-6 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">Clear</button>
+        </form>
         {/* Display current time */ }
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full my-8">
           <div className="flex flex-col items-center justify-center p-6 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl shadow-sm">
@@ -239,7 +275,7 @@ export default function Home() {
             </span>
           </div>
         </div>
-        { day >= 0 && day <= 5 && hour >= 1 && hour <= 11 ? (<div>
+        { timeFilterDay >= 0 && timeFilterDay <= 5 && timeFilterHour >= 1 && timeFilterHour <= 11 ? (<div>
           <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-6 gap-4">
             {/* Filter the rooms based on the building filter.
             If starts with 1, FD-I
@@ -264,7 +300,7 @@ export default function Home() {
               })
               .sort((a, b) => a[0].localeCompare(b[0]))
               .map(([room, bitArray]) => (
-                <RoomCard key={ room } room={ room } bitArray={ bitArray } />
+                <RoomCard key={ room } room={ room } bitArray={ bitArray } dayFilter={ timeFilterDay } hourFilter={ timeFilterHour } />
               )) }
           </div>
 

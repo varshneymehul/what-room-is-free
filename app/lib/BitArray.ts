@@ -31,4 +31,12 @@ export class BitArray {
     }
     return false;
   }
+
+  toBitString(): string {
+    let result = '';
+    for (let i = 0; i < this.size; i++) {
+      result += this.isSet(i) ? '1' : '0';
+    }
+    return result;
+  }
 }
