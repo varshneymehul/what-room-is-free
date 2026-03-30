@@ -283,7 +283,7 @@ export default function Home() {
             If starts with 3, FD-III
             If starts with 6, NAB
             If starts with 5, LTC 
-            If is 6113, 6114, 6115, 6116, 6117, 6118, IPC
+            If is 6113, 6114, 6115, 6116, 6117, 6118, 6119, IPC
             */}
 
             { rooms !== null && Array.from(rooms.entries())
@@ -295,7 +295,7 @@ export default function Home() {
                 if (buildingFilter === "FD-I") return room.startsWith("1");
                 if (buildingFilter === "FD-II") return room.startsWith("2");
                 if (buildingFilter === "FD-III") return room.startsWith("3");
-                if (buildingFilter === "IPC") return room === "6113" || room === "6114" || room === "6115" || room === "6116" || room === "6117" || room === "6118";
+                if (buildingFilter === "IPC") return room === "6113" || room === "6114" || room === "6115" || room === "6116" || room === "6117" || room === "6118" || room === "6119";
                 return false;
               })
               .sort((a, b) => a[0].localeCompare(b[0]))
