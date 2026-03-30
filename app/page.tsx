@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { BitArray } from "./lib/BitArray";
 import RoomCard from "./components/roomCard";
 import { FaWhatsapp } from "react-icons/fa6";
+import Link from "next/link";
 
 interface CSVRow {
   com_cod: string;
@@ -193,7 +194,11 @@ export default function Home() {
     <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
       <main className="flex min-h-screen w-full max-w-3xl flex-col items-center  py-32 px-16 bg-white dark:bg-black sm:items-start">
         <div>
-          <a target='_blank' className="my-2 hover:text-blue-500 transition-all" href="https://wa.me/918376820175"><p className="text-sm font-medium text-heading flex">send feedback<FaWhatsapp className="ml-0.5 text-green-500 cursor-pointer" size={ 18 } /></p></a>
+          <div className="flex justify-start">
+            <Link target='_blank' className="my-2 hover:text-blue-500 transition-all" href="https://wa.me/918376820175"><p className="text-sm font-medium text-heading flex">send feedback<FaWhatsapp className="ml-0.5 mr-2 text-green-500 cursor-pointer" size={ 18 } /></p></Link> 
+            
+            <Link target='_blank' className="my-2 hover:text-blue-500 transition-all" href="Timetable_24_Mar_2026.pdf"><p className="text-sm font-medium text-heading flex">see timetable</p></Link>
+          </div>
           <h1 className="text-4xl font-serif font-bold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-5xl">
             what room is free?
           </h1>
