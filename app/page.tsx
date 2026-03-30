@@ -153,6 +153,7 @@ export default function Home() {
         if (
           !rawRoom ||
           rawRoom === "" ||
+          rawRoom === "CANCLED" ||
           data[i].days_and_hours === "" ||
           data[i].days_and_hours === undefined
         )
