@@ -195,35 +195,35 @@ export default function Home() {
       <main className="flex min-h-screen w-full max-w-3xl flex-col items-center  py-32 px-16 bg-white dark:bg-black sm:items-start">
         <div>
           <div className="flex justify-start">
-            <Link target='_blank' className="my-2 hover:text-blue-500 transition-all" href="https://wa.me/918376820175"><p className="text-sm font-medium text-heading flex">send feedback<FaWhatsapp className="ml-0.5 mr-2 text-green-500 cursor-pointer" size={ 18 } /></p></Link> 
-            
-            <Link target='_blank' className="my-2 hover:text-blue-500 transition-all" href="Timetable_24_Mar_2026.pdf"><p className="text-sm font-medium text-heading flex">see timetable</p></Link>
+            <Link target='_blank' className="my-2 hover:text-blue-500 transition-all" href="https://wa.me/918376820175"><p className="text-sm font-medium text-zinc-700 dark:text-zinc-300 flex">send feedback<FaWhatsapp className="ml-0.5 mr-2 text-green-500 cursor-pointer" size={ 18 } /></p></Link>
+
+            <Link target='_blank' className="my-2 hover:text-blue-500 transition-all" href="Timetable_24_Mar_2026.pdf"><p className="text-sm font-medium text-zinc-700 dark:text-zinc-300 flex">see timetable</p></Link>
           </div>
           <h1 className="text-4xl font-serif font-bold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-5xl">
             what room is free?
           </h1>
-          <p> for the chitchats, study sessions, and everything in between</p>
+          <p className="text-zinc-600 dark:text-zinc-400"> for the chitchats, study sessions, and everything in between</p>
 
           {/* To display the list of free rooms */ }
           <section>
             <form className="max-w my-6" onSubmit={ (e) => e.preventDefault() }>
-              <label htmlFor="search" className="block mb-2.5 text-sm font-medium text-heading sr-only ">Search</label>
+              <label htmlFor="search" className="block mb-2.5 text-sm font-medium text-zinc-900 dark:text-zinc-100 sr-only ">Search</label>
               <div className="relative">
                 <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                  <svg className="w-4 h-4 text-body" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" strokeLinecap="round" strokeWidth="2" d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z" /></svg>
+                  <svg className="w-4 h-4 text-zinc-500 dark:text-zinc-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" strokeLinecap="round" strokeWidth="2" d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z" /></svg>
                 </div>
-                <input ref={ inputRef } type="search" id="search" className="block w-full p-3 ps-9 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand shadow-xs placeholder:text-body" placeholder="Search" value={ searchQuery } onChange={ (e) => setSearchQuery(e.target.value) } />
-                <button type="button" className="absolute end-1.5 bottom-1.5 text-white bg-brand hover:bg-brand-strong box-border border border-transparent focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded text-xs px-3 py-1.5 focus:outline-none">Search</button>
+                <input ref={ inputRef } type="search" id="search" className="block w-full p-3 ps-9 bg-zinc-50 dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 shadow-sm placeholder:text-zinc-500 dark:placeholder:text-zinc-400" placeholder="Search" value={ searchQuery } onChange={ (e) => setSearchQuery(e.target.value) } />
+                <button type="button" className="absolute end-1.5 bottom-1.5 text-white bg-blue-600 hover:bg-blue-700 box-border border border-transparent focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-800 shadow-sm font-medium leading-5 rounded text-xs px-3 py-1.5 focus:outline-none">Search</button>
               </div>
             </form>
             <div className="grid grid-cols-3 md:grid-cols-7 gap-4 my-4">
-              <button onClick={ () => setBuildingFilter("") } className={ `px-3 py-1.5 text-white rounded-sm cursor-pointer ${buildingFilter === "" ? "bg-blue-900" : ""}` }>All</button>
-              <button onClick={ () => setBuildingFilter("NAB") } className={ `px-3 py-1.5 text-white rounded-sm cursor-pointer ${buildingFilter === "NAB" ? "bg-blue-900" : ""}` }>NAB</button>
-              <button onClick={ () => setBuildingFilter("IPC") } className={ `px-3 py-1.5 text-white rounded-sm cursor-pointer ${buildingFilter === "IPC" ? "bg-blue-900" : ""}` }>IPC</button>
-              <button onClick={ () => setBuildingFilter("LTC") } className={ `px-3 py-1.5 text-white rounded-sm cursor-pointer ${buildingFilter === "LTC" ? "bg-blue-900" : ""}` }>LTC</button>
-              <button onClick={ () => setBuildingFilter("FD-I") } className={ `px-3 py-1.5 text-white rounded-sm cursor-pointer ${buildingFilter === "FD-I" ? "bg-blue-900" : ""}` }>FD-I</button>
-              <button onClick={ () => setBuildingFilter("FD-II") } className={ `px-3 py-1.5 text-white rounded-sm cursor-pointer ${buildingFilter === "FD-II" ? "bg-blue-900" : ""}` }>FD-II</button>
-              <button onClick={ () => setBuildingFilter("FD-III") } className={ `px-3 py-1.5 text-white rounded-sm cursor-pointer ${buildingFilter === "FD-III" ? "bg-blue-900" : ""}` }>FD-III</button>
+              <button onClick={ () => setBuildingFilter("") } className={ `px-3 py-1.5 rounded-sm cursor-pointer border ${buildingFilter === "" ? "bg-blue-600 text-white border-blue-600" : "bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border-zinc-300 dark:border-zinc-600 hover:bg-zinc-200 dark:hover:bg-zinc-700"}` }>All</button>
+              <button onClick={ () => setBuildingFilter("NAB") } className={ `px-3 py-1.5 rounded-sm cursor-pointer border ${buildingFilter === "NAB" ? "bg-blue-600 text-white border-blue-600" : "bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border-zinc-300 dark:border-zinc-600 hover:bg-zinc-200 dark:hover:bg-zinc-700"}` }>NAB</button>
+              <button onClick={ () => setBuildingFilter("IPC") } className={ `px-3 py-1.5 rounded-sm cursor-pointer border ${buildingFilter === "IPC" ? "bg-blue-600 text-white border-blue-600" : "bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border-zinc-300 dark:border-zinc-600 hover:bg-zinc-200 dark:hover:bg-zinc-700"}` }>IPC</button>
+              <button onClick={ () => setBuildingFilter("LTC") } className={ `px-3 py-1.5 rounded-sm cursor-pointer border ${buildingFilter === "LTC" ? "bg-blue-600 text-white border-blue-600" : "bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border-zinc-300 dark:border-zinc-600 hover:bg-zinc-200 dark:hover:bg-zinc-700"}` }>LTC</button>
+              <button onClick={ () => setBuildingFilter("FD-I") } className={ `px-3 py-1.5 rounded-sm cursor-pointer border ${buildingFilter === "FD-I" ? "bg-blue-600 text-white border-blue-600" : "bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border-zinc-300 dark:border-zinc-600 hover:bg-zinc-200 dark:hover:bg-zinc-700"}` }>FD-I</button>
+              <button onClick={ () => setBuildingFilter("FD-II") } className={ `px-3 py-1.5 rounded-sm cursor-pointer border ${buildingFilter === "FD-II" ? "bg-blue-600 text-white border-blue-600" : "bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border-zinc-300 dark:border-zinc-600 hover:bg-zinc-200 dark:hover:bg-zinc-700"}` }>FD-II</button>
+              <button onClick={ () => setBuildingFilter("FD-III") } className={ `px-3 py-1.5 rounded-sm cursor-pointer border ${buildingFilter === "FD-III" ? "bg-blue-600 text-white border-blue-600" : "bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border-zinc-300 dark:border-zinc-600 hover:bg-zinc-200 dark:hover:bg-zinc-700"}` }>FD-III</button>
             </div>
           </section>
 
@@ -311,7 +311,7 @@ export default function Home() {
           </div>
 
         </div>) : (<div>
-          <p>Go anywhere bro.</p>
+          <p className="text-zinc-600 dark:text-zinc-400">Go anywhere bro.</p>
         </div>) }
       </main >
     </div >
