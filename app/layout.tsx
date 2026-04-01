@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next"
+import ServiceWorkerRegistrar from "./components/ServiceWorkerRegistrar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,6 +17,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "what room is free? @ bits",
   description: "A simple website to check which room is free @ BITS Pilani",
+  icons: {
+    icon: '/favicon_io/favicon.ico',
+  },
 };
 
 export default function RootLayout({
@@ -26,9 +30,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={ `${geistSans.variable} ${geistMono.variable} antialiased` }
       >
-        {children}
+        { children }
+        <ServiceWorkerRegistrar />
       </body>
       <Analytics />
     </html>

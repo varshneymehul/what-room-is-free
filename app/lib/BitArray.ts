@@ -31,6 +31,25 @@ export class BitArray {
     }
     return false;
   }
+  nextSet(index: number) {
+    if (index >= 0 && index < this.size) {
+      const byteIndex = Math.floor(index / 32);
+      const bitIndex = index % 32;
+      for (let i = bitIndex; i < 32; i++) {
+        if (this.data[byteIndex] & (1 << i)) {
+          return byteIndex * 32 + i;
+        }
+      }
+      for (let i = byteIndex + 1; i < this.data.length; i++) {
+        for (let j = 0; j < 32; j++) {
+          if (this.data[i] & (1 << j)) {
+            return i * 32 + j;
+          }
+        }
+      }
+    }
+    return -1;
+  }
 
   toBitString(): string {
     let result = '';

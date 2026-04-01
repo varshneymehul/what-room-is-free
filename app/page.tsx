@@ -6,6 +6,7 @@ import { BitArray } from "./lib/BitArray";
 import RoomCard from "./components/roomCard";
 import { FaWhatsapp } from "react-icons/fa6";
 import Link from "next/link";
+import InstallPrompt from "./components/InstallPrompt";
 
 interface CSVRow {
   com_cod: string;
@@ -199,6 +200,7 @@ export default function Home() {
 
             <Link target='_blank' className="my-2 hover:text-blue-500 transition-all" href="Timetable_24_Mar_2026.pdf"><p className="text-sm font-medium text-zinc-700 dark:text-zinc-300 flex">see timetable</p></Link>
           </div>
+          <InstallPrompt />
           <h1 className="text-4xl font-serif font-bold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-5xl">
             what room is free?
           </h1>
@@ -264,24 +266,24 @@ export default function Home() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full my-8">
           <div className="flex flex-col items-center justify-center p-6 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl shadow-sm">
             <span className="text-sm font-medium text-zinc-500 dark:text-zinc-400 mb-1">Date</span>
-            <span className="text-2xl font-bold text-zinc-900 dark:text-zinc-100">
+            <span className="text-2xl font-bold text-zinc-900 dark:text-zinc-100" suppressHydrationWarning>
               { new Date().getDate().toString().padStart(2, '0') }/{ (new Date().getMonth() + 1).toString().padStart(2, '0') }/{ new Date().getFullYear() }
             </span>
           </div>
           <div className="flex flex-col items-center justify-center p-6 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl shadow-sm">
             <span className="text-sm font-medium text-zinc-500 dark:text-zinc-400 mb-1">Time</span>
-            <span className="text-2xl font-bold text-zinc-900 dark:text-zinc-100">
+            <span className="text-2xl font-bold text-zinc-900 dark:text-zinc-100" suppressHydrationWarning>
               { new Date().getHours().toString().padStart(2, '0') }:{ new Date().getMinutes().toString().padStart(2, '0') }
             </span>
           </div>
           <div className="flex flex-col items-center justify-center p-6 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl shadow-sm">
             <span className="text-sm font-medium text-zinc-500 dark:text-zinc-400 mb-1">Timetable Schedule</span>
-            <span className="text-2xl font-bold text-zinc-900 dark:text-zinc-100 text-center">
+            <span className="text-2xl font-bold text-zinc-900 dark:text-zinc-100 text-center" suppressHydrationWarning>
               { day == 0 ? "Monday" : day == 1 ? "Tuesday" : day == 2 ? "Wednesday" : day == 3 ? "Thursday" : day == 4 ? "Friday" : day == 5 ? "Saturday" : "Sunday" }<br /><span className="text-lg text-zinc-500 font-normal block sm:inline">Hour { hour }</span>
             </span>
           </div>
         </div>
-        { timeFilterDay >= 0 && timeFilterDay <= 5 && timeFilterHour >= 1 && timeFilterHour <= 11 ? (<div>
+        { timeFilterDay >= 0 && timeFilterDay <= 5 && timeFilterHour >= 1 && timeFilterHour <= 12 ? (<div>
           <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-6 gap-4">
             {/* Filter the rooms based on the building filter.
             If starts with 1, FD-I
