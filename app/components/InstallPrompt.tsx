@@ -89,7 +89,7 @@ const InstallPrompt = () => {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={ 2 } d="M19 9l-7 7-7-7" />
         </svg>
       </summary>
-      <div className="px-4 pb-4 pl-[3.25rem]">
+      <div className="px-4 pb-4 pl-13">
 
         {/* Chrome / Edge / other Chromium browsers on desktop & Android */ }
         { deferredPrompt && (
